@@ -71,16 +71,40 @@ document.addEventListener('DOMContentLoaded', () => {
             mouseY = e.clientY;
         });
 
+        // Shooting animation on click
+        window.addEventListener('mousedown', () => {
+            gsap.to(cursor, { scale: 0.5, backgroundColor: '#fff', duration: 0.1 });
+            gsap.to(follower, { 
+                scale: 0.7, 
+                rotation: 45,
+                borderColor: '#00f0ff',
+                boxShadow: 'inset 0 0 20px rgba(0,240,255,0.8), 0 0 20px rgba(0,240,255,0.8)',
+                duration: 0.1 
+            });
+        });
+
+        window.addEventListener('mouseup', () => {
+            gsap.to(cursor, { scale: 1, backgroundColor: '#00f0ff', duration: 0.4, ease: 'back.out(3)' });
+            gsap.to(follower, { 
+                scale: 1, 
+                rotation: 0,
+                borderColor: 'rgba(255,0,60,0.5)', 
+                boxShadow: 'inset 0 0 10px rgba(255,0,60,0.3)',
+                duration: 0.4, 
+                ease: 'back.out(3)' 
+            });
+        });
+
         // Add hover effect for links and buttons
-        const hoverElements = document.querySelectorAll('a, button, input, textarea, select, .cursor-pointer');
+        const hoverElements = document.querySelectorAll('a, button, input, textarea, select, .cursor-pointer, [onclick]');
         hoverElements.forEach(el => {
             el.addEventListener('mouseenter', () => {
                 gsap.to(cursor, { scale: 0, duration: 0.3 });
-                gsap.to(follower, { scale: 1.5, backgroundColor: 'rgba(255,255,255,0.1)', borderColor: 'transparent', duration: 0.3 });
+                gsap.to(follower, { scale: 1.5, backgroundColor: 'rgba(0,240,255,0.1)', borderColor: '#00f0ff', duration: 0.3 });
             });
             el.addEventListener('mouseleave', () => {
                 gsap.to(cursor, { scale: 1, duration: 0.3 });
-                gsap.to(follower, { scale: 1, backgroundColor: 'transparent', borderColor: 'rgba(255,255,255,0.5)', duration: 0.3 });
+                gsap.to(follower, { scale: 1, backgroundColor: 'transparent', borderColor: 'rgba(255,0,60,0.5)', duration: 0.3 });
             });
         });
     }

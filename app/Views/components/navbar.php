@@ -5,8 +5,8 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="flex justify-between items-center h-20 transition-all duration-300" id="navbar-container">
             <div class="flex items-center justify-between w-full md:w-auto">
-                <a href="/" class="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
-                    <?= htmlspecialchars($settings['site_title'] ?? 'Portofolioku') ?>
+                <a href="/" class="text-2xl font-display font-black tracking-widest uppercase text-white hover:text-primary transition-colors drop-shadow-[0_0_10px_rgba(0,240,255,0.5)]">
+                    > <?= htmlspecialchars($settings['site_title'] ?? 'Portofolioku') ?>_
                 </a>
                 
                 <!-- Mobile menu button -->
@@ -21,10 +21,10 @@
             
             <!-- Desktop menu -->
             <div class="hidden md:flex md:items-center md:space-x-8">
-                <a href="/#about" class="nav-link text-gray-300 hover:text-white transition-colors duration-200 font-medium text-sm tracking-wide">About</a>
-                <a href="/#projects" class="nav-link text-gray-300 hover:text-white transition-colors duration-200 font-medium text-sm tracking-wide">Projects</a>
-                <a href="/#skills" class="nav-link text-gray-300 hover:text-white transition-colors duration-200 font-medium text-sm tracking-wide">Skills</a>
-                <a href="/#contact" class="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white font-medium text-sm transition-all duration-300 backdrop-blur-sm">Contact Me</a>
+                <a href="/#about" class="nav-link text-gray-300 hover:text-primary transition-colors duration-200 font-display font-bold uppercase text-sm tracking-widest">[ ABOUT ]</a>
+                <a href="/#projects" class="nav-link text-gray-300 hover:text-primary transition-colors duration-200 font-display font-bold uppercase text-sm tracking-widest">[ PROJECTS ]</a>
+                <a href="/#skills" class="nav-link text-gray-300 hover:text-primary transition-colors duration-200 font-display font-bold uppercase text-sm tracking-widest">[ SKILLS ]</a>
+                <a href="/#contact" class="px-5 py-2.5 rounded-sm bg-primary/20 hover:bg-primary border border-primary text-primary hover:text-dark font-display font-bold uppercase text-sm transition-all duration-300 backdrop-blur-sm shadow-[0_0_10px_rgba(0,240,255,0.3)] hover:shadow-[0_0_20px_rgba(0,240,255,0.8)]">> CONTACT_</a>
             </div>
         </div>
     </div>
@@ -32,10 +32,10 @@
     <!-- Mobile Menu Panel -->
     <div class="md:hidden hidden bg-dark/95 backdrop-blur-xl border-b border-white/10 absolute w-full left-0 top-full shadow-2xl" id="mobile-menu">
         <div class="px-4 pt-4 pb-8 space-y-4 flex flex-col items-center">
-            <a href="/#about" class="mobile-link block px-3 py-2 text-lg font-medium text-gray-300 hover:text-white">About</a>
-            <a href="/#projects" class="mobile-link block px-3 py-2 text-lg font-medium text-gray-300 hover:text-white">Projects</a>
-            <a href="/#skills" class="mobile-link block px-3 py-2 text-lg font-medium text-gray-300 hover:text-white">Skills</a>
-            <a href="/#contact" class="mobile-link mt-4 inline-block px-8 py-3 rounded-full bg-primary hover:bg-indigo-500 transition-colors text-white font-medium shadow-lg shadow-primary/30">Contact Me</a>
+            <a href="/#about" class="mobile-link block px-3 py-2 text-lg font-display font-bold tracking-widest uppercase text-gray-300 hover:text-primary">[ ABOUT ]</a>
+            <a href="/#projects" class="mobile-link block px-3 py-2 text-lg font-display font-bold tracking-widest uppercase text-gray-300 hover:text-primary">[ PROJECTS ]</a>
+            <a href="/#skills" class="mobile-link block px-3 py-2 text-lg font-display font-bold tracking-widest uppercase text-gray-300 hover:text-primary">[ SKILLS ]</a>
+            <a href="/#contact" class="mobile-link mt-4 inline-block px-8 py-3 rounded-sm border border-primary bg-primary/20 hover:bg-primary hover:text-dark transition-colors text-primary font-display font-bold tracking-widest uppercase shadow-[0_0_15px_rgba(0,240,255,0.4)]">> CONTACT_</a>
         </div>
     </div>
 </nav>
