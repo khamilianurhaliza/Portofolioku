@@ -1,6 +1,27 @@
 <?php
 
-define('BASE_PATH', dirname(__DIR__));
+$publicPath = realpath(__DIR__);
+$baseCandidates = [
+    dirname($publicPath),
+    dirname($publicPath) . '/main',
+    dirname($publicPath, 2),
+];
+
+$basePath = null;
+foreach ($baseCandidates as $candidate) {
+    $candidate = rtrim($candidate, DIRECTORY_SEPARATOR);
+    if (is_dir($candidate . '/app') && is_dir($candidate . '/config') && is_dir($candidate . '/routes')) {
+        $basePath = $candidate;
+        break;
+    }
+}
+
+if ($basePath === null) {
+    $basePath = dirname($publicPath);
+}
+
+define('BASE_PATH', $basePath);
+define('PUBLIC_PATH', $publicPath);
 
 // Simple autoloader for PSR-4 compliance
 spl_autoload_register(function ($class) {
