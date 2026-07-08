@@ -42,9 +42,6 @@
             <p class="text-sm text-gray-500">
                 SYS.COPYRIGHT <?= date('Y') ?> [<?= htmlspecialchars($settings['author_name'] ?? 'Portofolioku') ?>].
             </p>
-            <p class="text-xs text-gray-600 mt-2 md:mt-0 tracking-widest">
-                BUILT_WITH <span class="text-secondary animate-pulse">❤</span> AND_CODE
-            </p>
         </div>
     </div>
 </footer>
