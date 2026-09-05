@@ -26,6 +26,7 @@ class SkillController extends AdminController
             'name' => $_POST['name'] ?? '',
             'proficiency' => (int)($_POST['proficiency'] ?? 0),
             'icon' => $_POST['icon'] ?? '',
+            'category' => $_POST['category'] ?? 'Hard Skill',
         ];
 
         $this->skillModel->create($data);
@@ -54,6 +55,7 @@ class SkillController extends AdminController
             'name' => $_POST['name'] ?? '',
             'proficiency' => $_POST['proficiency'] ?? 0,
             'icon' => $_POST['icon'] ?? '',
+            'category' => $_POST['category'] ?? 'Hard Skill',
         ];
 
         $this->skillModel->update($id, $data);

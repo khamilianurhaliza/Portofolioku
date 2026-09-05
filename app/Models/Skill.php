@@ -10,22 +10,24 @@ class Skill extends Model
 
     public function create(array $data)
     {
-        $stmt = $this->db->prepare("INSERT INTO {$this->table} (name, proficiency, icon) VALUES (:name, :proficiency, :icon)");
+        $stmt = $this->db->prepare("INSERT INTO {$this->table} (name, proficiency, icon, category) VALUES (:name, :proficiency, :icon, :category)");
         return $stmt->execute([
             'name' => $data['name'],
             'proficiency' => $data['proficiency'] ?? 0,
             'icon' => $data['icon'] ?? null,
+            'category' => $data['category'] ?? 'Hard Skill',
         ]);
     }
 
     public function update($id, array $data)
     {
-        $stmt = $this->db->prepare("UPDATE {$this->table} SET name = :name, proficiency = :proficiency, icon = :icon WHERE id = :id");
+        $stmt = $this->db->prepare("UPDATE {$this->table} SET name = :name, proficiency = :proficiency, icon = :icon, category = :category WHERE id = :id");
         return $stmt->execute([
             'id' => $id,
             'name' => $data['name'],
             'proficiency' => $data['proficiency'] ?? 0,
             'icon' => $data['icon'] ?? null,
+            'category' => $data['category'] ?? 'Hard Skill',
         ]);
     }
 }

@@ -40,6 +40,13 @@ $router->get('/admin/experiences/{id}/edit', [\App\Controllers\Admin\ExperienceC
 $router->post('/admin/experiences/{id}/edit', [\App\Controllers\Admin\ExperienceController::class, 'update']);
 $router->post('/admin/experiences/{id}/delete', [\App\Controllers\Admin\ExperienceController::class, 'delete']);
 
+// Certificates
+$router->get('/admin/certificates', [\App\Controllers\Admin\CertificateController::class, 'index']);
+$router->post('/admin/certificates', [\App\Controllers\Admin\CertificateController::class, 'store']);
+$router->get('/admin/certificates/{id}/edit', [\App\Controllers\Admin\CertificateController::class, 'edit']);
+$router->post('/admin/certificates/{id}/edit', [\App\Controllers\Admin\CertificateController::class, 'update']);
+$router->post('/admin/certificates/{id}/delete', [\App\Controllers\Admin\CertificateController::class, 'delete']);
+
 // Settings
 $router->get('/admin/settings', [\App\Controllers\Admin\SettingController::class, 'index']);
 $router->post('/admin/settings', [\App\Controllers\Admin\SettingController::class, 'update']);

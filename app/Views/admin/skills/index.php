@@ -18,6 +18,7 @@
             <thead class="bg-gray-50/80">
                 <tr>
                     <th scope="col" class="px-8 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Skill Info</th>
+                    <th scope="col" class="px-8 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Category</th>
                     <th scope="col" class="px-8 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Proficiency</th>
                     <th scope="col" class="px-8 py-4 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
@@ -45,6 +46,11 @@
                                     <div class="text-sm font-bold text-gray-900"><?= htmlspecialchars($skill['name']) ?></div>
                                 </div>
                             </div>
+                        </td>
+                        <td class="px-8 py-5 whitespace-nowrap">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
+                                <?= htmlspecialchars($skill['category'] ?? 'Hard Skill') ?>
+                            </span>
                         </td>
                         <td class="px-8 py-5 whitespace-nowrap">
                             <div class="w-full bg-gray-200 rounded-full h-2.5">
@@ -89,9 +95,19 @@
                 <input type="number" name="proficiency" required min="0" max="100" placeholder="85" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-gray-50 focus:bg-white">
             </div>
         </div>
-        <div>
-            <label class="block text-sm font-semibold text-gray-700 mb-2">Icon URL (Optional)</label>
-            <input type="url" name="icon" placeholder="https://..." class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-gray-50 focus:bg-white">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Category</label>
+                <select name="category" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-gray-50 focus:bg-white">
+                    <option value="Hard Skill">Hard Skill</option>
+                    <option value="Soft Skill">Soft Skill</option>
+                    <option value="Tool">Tool</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Icon URL (Optional)</label>
+                <input type="url" name="icon" placeholder="https://..." class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-gray-50 focus:bg-white">
+            </div>
         </div>
         
         <div class="pt-4 border-t border-gray-100 flex justify-end">
