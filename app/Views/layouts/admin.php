@@ -108,8 +108,8 @@
             </header>
             
             <!-- Dynamic Content Area -->
-            <main class="flex-1 overflow-y-auto p-8 relative z-10 scroll-smooth">
-                <div class="max-w-6xl mx-auto">
+            <main class="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8 relative z-10 scroll-smooth">
+                <div class="w-full">
                     <?= $content ?? '' ?>
                 </div>
             </main>

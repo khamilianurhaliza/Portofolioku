@@ -1,8 +1,8 @@
 <?php ob_start(); ?>
 
 <!-- Stats Overview -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-10">
+    <div class="bg-white p-5 sm:p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow relative overflow-hidden group">
         <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full -z-10 group-hover:scale-110 transition-transform"></div>
         <div class="flex justify-between items-start">
             <div>
@@ -15,7 +15,7 @@
         </div>
     </div>
     
-    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow relative overflow-hidden group">
+    <div class="bg-white p-5 sm:p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow relative overflow-hidden group">
         <div class="absolute top-0 right-0 w-24 h-24 bg-pink-500/5 rounded-bl-full -z-10 group-hover:scale-110 transition-transform"></div>
         <div class="flex justify-between items-start">
             <div>
@@ -31,22 +31,22 @@
 
 <!-- Recent Messages -->
 <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-    <div class="px-8 py-6 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
-        <h3 class="font-bold text-gray-800 text-lg">Recent Inbox Messages</h3>
+    <div class="px-5 sm:px-8 py-4 sm:py-6 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
+        <h3 class="font-bold text-gray-800 text-base sm:text-lg">Recent Inbox Messages</h3>
         <span class="text-xs font-medium bg-primary/10 text-primary px-3 py-1 rounded-full">Last 5</span>
     </div>
     <div class="p-0">
         <?php if(empty($recentMessages)): ?>
-            <div class="p-10 text-center">
+            <div class="p-6 sm:p-10 text-center">
                 <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 mb-4 text-gray-400">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
                 </div>
-                <p class="text-gray-500 font-medium">Inbox is completely empty.</p>
+                <p class="text-gray-500 font-medium text-sm sm:text-base">Inbox is completely empty.</p>
             </div>
         <?php else: ?>
             <ul class="divide-y divide-gray-100">
                 <?php foreach($recentMessages as $msg): ?>
-                    <li class="p-6 hover:bg-gray-50 transition-colors flex items-start gap-4">
+                    <li class="p-4 sm:p-6 hover:bg-gray-50 transition-colors flex items-start gap-3 sm:gap-4">
                         <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-pink-500 flex items-center justify-center text-white font-bold flex-shrink-0 shadow-sm">
                             <?= strtoupper(substr($msg['name'], 0, 1)) ?>
                         </div>
