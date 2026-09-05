@@ -6,6 +6,7 @@ use App\Core\Controller;
 use App\Models\Project;
 use App\Models\Skill;
 use App\Models\Experience;
+use App\Models\Certificate;
 use App\Models\Setting;
 
 class HomeController extends Controller
@@ -15,17 +16,20 @@ class HomeController extends Controller
         $projectModel = new Project();
         $skillModel = new Skill();
         $experienceModel = new Experience();
+        $certificateModel = new Certificate();
         $settingModel = new Setting();
 
         $projects = $projectModel->all();
         $skills = $skillModel->all();
         $experiences = $experienceModel->all();
+        $certificates = $certificateModel->all();
         $settings = $settingModel->getAllSettings();
 
         $this->view('web/home', [
             'projects' => $projects,
             'skills' => $skills,
             'experiences' => $experiences,
+            'certificates' => $certificates,
             'settings' => $settings
         ]);
     }

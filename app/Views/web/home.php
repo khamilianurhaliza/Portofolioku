@@ -76,12 +76,20 @@
             <div class="w-24 h-1 bg-gradient-to-r from-secondary to-primary mx-auto"></div>
         </div>
         
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6" id="skills-grid">
             <?php if(empty($skills)): ?>
                 <div class="col-span-full text-center text-gray-500 italic">No skills added yet.</div>
             <?php else: ?>
-                <?php foreach($skills as $skill): ?>
-                <div class="bg-dark/80 border border-white/10 rounded-sm p-6 text-center hover:border-secondary transition-colors duration-300 gsap-pop-in tilt-3d shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:shadow-[0_0_20px_rgba(255,0,60,0.3)]" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.3" data-tilt-scale="1.05">
+                <?php $skillCount = 0; foreach($skills as $skill): $skillCount++; ?>
+                <?php 
+                    $previewClasses = '';
+                    if ($skillCount > 8 && $skillCount <= 12) {
+                        $previewClasses = 'preview-skill opacity-40 blur-sm pointer-events-none select-none';
+                    } elseif ($skillCount > 12) {
+                        $previewClasses = 'hidden extra-hidden-skill';
+                    }
+                ?>
+                <div class="skill-item <?= $previewClasses ?> bg-dark/80 border border-white/10 rounded-sm p-6 text-center hover:border-secondary transition-all duration-500 gsap-pop-in tilt-3d shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:shadow-[0_0_20px_rgba(255,0,60,0.3)]" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.3" data-tilt-scale="1.05">
                     <div class="w-16 h-16 mx-auto bg-black rounded-sm flex items-center justify-center mb-4 border border-secondary/50 shadow-[0_0_10px_rgba(255,0,60,0.2)]">
                         <?php if($skill['icon']): ?>
                             <img src="<?= htmlspecialchars($skill['icon']) ?>" alt="<?= htmlspecialchars($skill['name']) ?>" class="w-8 h-8 object-contain filter grayscale group-hover:grayscale-0">
@@ -89,7 +97,10 @@
                             <span class="text-xl font-display font-bold text-secondary"><?= substr(htmlspecialchars($skill['name']), 0, 1) ?></span>
                         <?php endif; ?>
                     </div>
-                    <h3 class="text-lg font-display uppercase tracking-widest text-white mb-2"><?= htmlspecialchars($skill['name']) ?></h3>
+                    <h3 class="text-lg font-display uppercase tracking-widest text-white mb-1"><?= htmlspecialchars($skill['name']) ?></h3>
+                    <div class="text-[10px] text-primary/80 font-display uppercase tracking-widest mb-3">
+                        [ <?= htmlspecialchars($skill['category'] ?? 'Hard Skill') ?> ]
+                    </div>
                     <div class="w-full bg-gray-900 h-1 mb-1 overflow-hidden border border-white/5">
                         <div class="bg-gradient-to-r from-secondary to-primary h-1 skill-progress" data-width="<?= $skill['proficiency'] ?>%"></div>
                     </div>
@@ -98,6 +109,56 @@
                 <?php endforeach; ?>
             <?php endif; ?>
         </div>
+        
+        <?php if(!empty($skills) && count($skills) > 8): ?>
+        <div class="text-center mt-12">
+            <button onclick="toggleSkills()" id="toggle-skills-btn" class="inline-flex flex-col items-center justify-center text-gray-400 hover:text-primary transition-colors cursor-pointer group">
+                <span class="text-xs font-display font-bold tracking-widest uppercase mb-2 group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)]">View All Skills</span>
+                <svg class="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+            </button>
+        </div>
+        <script>
+            function toggleSkills() {
+                const previewSkills = document.querySelectorAll('.skill-item.preview-skill');
+                const extraHidden = document.querySelectorAll('.skill-item.extra-hidden-skill');
+                const btn = document.getElementById('toggle-skills-btn');
+                const btnText = btn.querySelector('span');
+                const btnIcon = btn.querySelector('svg');
+                
+                // Check if we are currently in collapsed mode (i.e. if preview skills are blurred)
+                const isCollapsed = previewSkills.length > 0 && previewSkills[0].classList.contains('blur-sm');
+                
+                if (isCollapsed) {
+                    // Show all
+                    previewSkills.forEach(skill => {
+                        skill.classList.remove('opacity-40', 'blur-sm', 'pointer-events-none', 'select-none');
+                    });
+                    extraHidden.forEach(skill => {
+                        skill.classList.remove('hidden');
+                        skill.classList.add('shown-extra');
+                    });
+                    btnText.innerText = 'Show Less';
+                    btnIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>'; // Up arrow
+                    btnIcon.classList.remove('animate-bounce');
+                } else {
+                    // Hide again
+                    previewSkills.forEach(skill => {
+                        skill.classList.add('opacity-40', 'blur-sm', 'pointer-events-none', 'select-none');
+                    });
+                    const shownExtra = document.querySelectorAll('.skill-item.shown-extra');
+                    shownExtra.forEach(skill => {
+                        skill.classList.add('hidden');
+                        skill.classList.remove('shown-extra');
+                    });
+                    btnText.innerText = 'View All Skills';
+                    btnIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>'; // Down arrow
+                    btnIcon.classList.add('animate-bounce');
+                    
+                    document.getElementById('skills').scrollIntoView({behavior: 'smooth', block: 'start'});
+                }
+            }
+        </script>
+        <?php endif; ?>
     </div>
 </section>
 
@@ -164,6 +225,92 @@
         </div>
     </div>
 </section>
+
+<!-- Certificates Section -->
+<section id="certificates" class="py-24 relative overflow-hidden bg-dark/50">
+    <div class="container mx-auto px-4 max-w-6xl pointer-events-auto">
+        <div class="text-center mb-16 gsap-fade-up">
+            <h2 class="text-3xl md:text-5xl font-display font-bold uppercase tracking-widest mb-4"><span class="text-secondary">></span> SYS.<span class="text-primary">CERTIFICATES</span> <span class="text-secondary animate-pulse">_</span></h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-secondary to-primary mx-auto"></div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <?php if(empty($certificates)): ?>
+                <div class="col-span-full text-center text-gray-500 italic">No certificates added yet.</div>
+            <?php else: ?>
+                <?php foreach($certificates as $cert): ?>
+                <div class="bg-dark/80 border border-white/10 rounded-sm overflow-hidden hover:border-secondary transition-all duration-300 gsap-pop-in tilt-3d shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:shadow-[0_0_20px_rgba(255,0,60,0.3)] group" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+                    <div class="relative h-48 bg-black overflow-hidden border-b border-white/10 group-hover:cursor-pointer" onclick="openCertificateModal('<?= htmlspecialchars($cert['image_url']) ?>', '<?= htmlspecialchars(addslashes($cert['title'])) ?>')">
+                        <?php if($cert['image_url']): ?>
+                            <img src="<?= htmlspecialchars($cert['image_url']) ?>" alt="<?= htmlspecialchars($cert['title']) ?>" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-500 filter contrast-125">
+                            <div class="absolute inset-0 bg-primary/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <svg class="w-10 h-10 text-white drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                            </div>
+                        <?php else: ?>
+                            <div class="w-full h-full flex items-center justify-center text-secondary/50 font-display font-bold tracking-widest uppercase text-sm">NO_IMAGE_DATA</div>
+                        <?php endif; ?>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-display uppercase tracking-widest text-white mb-2"><?= htmlspecialchars($cert['title']) ?></h3>
+                        <div class="text-sm text-gray-400 mb-4 font-mono">
+                            <span class="text-primary">> ISSUER:</span> <?= htmlspecialchars($cert['issuer']) ?><br/>
+                            <span class="text-primary">> DATE:</span> <?= !empty($cert['date_issued']) ? date('M d, Y', strtotime($cert['date_issued'])) : 'N/A' ?>
+                        </div>
+                        <?php if($cert['credential_url']): ?>
+                            <a href="<?= htmlspecialchars($cert['credential_url']) ?>" target="_blank" class="inline-flex items-center text-xs font-display font-bold uppercase tracking-widest text-white hover:text-secondary transition-colors group/link relative z-20 pointer-events-auto">
+                                [ VERIFY_CREDENTIAL ]
+                                <svg class="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                            </a>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+    </div>
+</section>
+
+<!-- Certificate Modal -->
+<div id="cert-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/90 backdrop-blur-sm opacity-0 transition-opacity duration-300 pointer-events-auto" onclick="closeCertificateModal()">
+    <button onclick="closeCertificateModal()" class="fixed top-6 right-6 md:top-10 md:right-10 text-white hover:text-secondary bg-white/10 hover:bg-white/20 p-2 md:p-3 rounded-full backdrop-blur-md border border-white/20 transition-all z-[110] shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+        <svg class="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    </button>
+    <div class="max-w-5xl max-h-[90vh] p-4 flex flex-col items-center relative z-[105]" onclick="event.stopPropagation()">
+        <img id="cert-modal-img" src="" alt="Certificate Preview" class="max-w-full max-h-[80vh] object-contain border border-white/20 shadow-[0_0_30px_rgba(0,240,255,0.3)] bg-dark/80 rounded-sm">
+        <h3 id="cert-modal-title" class="text-xl font-display font-bold text-primary tracking-widest uppercase mt-6 text-center drop-shadow-lg"></h3>
+    </div>
+</div>
+
+<script>
+function openCertificateModal(imageUrl, title) {
+    if(!imageUrl) return;
+    const modal = document.getElementById('cert-modal');
+    const img = document.getElementById('cert-modal-img');
+    const titleEl = document.getElementById('cert-modal-title');
+    
+    img.src = imageUrl;
+    titleEl.innerText = title;
+    
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    // slight delay for transition
+    setTimeout(() => {
+        modal.classList.remove('opacity-0');
+        modal.classList.add('opacity-100');
+    }, 10);
+}
+
+function closeCertificateModal() {
+    const modal = document.getElementById('cert-modal');
+    modal.classList.remove('opacity-100');
+    modal.classList.add('opacity-0');
+    setTimeout(() => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.getElementById('cert-modal-img').src = '';
+    }, 300);
+}
+</script>
 
 <!-- Contact Section -->
 <section id="contact" class="py-24 relative overflow-hidden">

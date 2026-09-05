@@ -5,7 +5,7 @@
         <h2 class="text-3xl font-bold text-gray-800">Manage Projects</h2>
         <p class="text-gray-500 text-sm mt-1">Add, edit, or remove items from your portfolio.</p>
     </div>
-    <button onclick="document.getElementById('add-form').scrollIntoView({behavior: 'smooth'})" class="bg-primary hover:bg-indigo-600 text-white px-6 py-2.5 rounded-xl font-medium shadow-lg shadow-primary/30 transition-all flex items-center">
+    <button onclick="toggleForm()" class="bg-primary hover:bg-indigo-600 text-white px-6 py-2.5 rounded-xl font-medium shadow-lg shadow-primary/30 transition-all flex items-center">
         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
         Add New Project
     </button>
@@ -99,7 +99,7 @@
 </div>
 
 <!-- Add Project Form -->
-<div id="add-form" class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 scroll-mt-24">
+<div id="add-form" class="hidden bg-white p-8 rounded-2xl shadow-sm border border-gray-100 scroll-mt-24">
     <div class="mb-6 border-b border-gray-100 pb-4">
         <h3 class="text-xl font-bold text-gray-800">Add New Project</h3>
         <p class="text-gray-500 text-sm mt-1">Fill out the details below. Use the rich text editor for the description.</p>
@@ -195,6 +195,14 @@
             description.value = '';
         }
     };
+
+    function toggleForm() {
+        var formContainer = document.getElementById('add-form');
+        formContainer.classList.toggle('hidden');
+        if (!formContainer.classList.contains('hidden')) {
+            formContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
 </script>
 
 <?php 

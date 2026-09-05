@@ -24,6 +24,7 @@
                 <a href="/#about" class="nav-link text-gray-300 hover:text-primary transition-colors duration-200 font-display font-bold uppercase text-sm tracking-widest">[ ABOUT ]</a>
                 <a href="/#projects" class="nav-link text-gray-300 hover:text-primary transition-colors duration-200 font-display font-bold uppercase text-sm tracking-widest">[ PROJECTS ]</a>
                 <a href="/#skills" class="nav-link text-gray-300 hover:text-primary transition-colors duration-200 font-display font-bold uppercase text-sm tracking-widest">[ SKILLS ]</a>
+                <a href="/#certificates" class="nav-link text-gray-300 hover:text-primary transition-colors duration-200 font-display font-bold uppercase text-sm tracking-widest">[ CERTIFICATES ]</a>
                 <a href="/#contact" class="px-5 py-2.5 rounded-sm bg-primary/20 hover:bg-primary border border-primary text-primary hover:text-dark font-display font-bold uppercase text-sm transition-all duration-300 backdrop-blur-sm shadow-[0_0_10px_rgba(0,240,255,0.3)] hover:shadow-[0_0_20px_rgba(0,240,255,0.8)]">> CONTACT_</a>
             </div>
         </div>
@@ -35,6 +36,7 @@
             <a href="/#about" class="mobile-link block px-3 py-2 text-lg font-display font-bold tracking-widest uppercase text-gray-300 hover:text-primary">[ ABOUT ]</a>
             <a href="/#projects" class="mobile-link block px-3 py-2 text-lg font-display font-bold tracking-widest uppercase text-gray-300 hover:text-primary">[ PROJECTS ]</a>
             <a href="/#skills" class="mobile-link block px-3 py-2 text-lg font-display font-bold tracking-widest uppercase text-gray-300 hover:text-primary">[ SKILLS ]</a>
+            <a href="/#certificates" class="mobile-link block px-3 py-2 text-lg font-display font-bold tracking-widest uppercase text-gray-300 hover:text-primary">[ CERTIFICATES ]</a>
             <a href="/#contact" class="mobile-link mt-4 inline-block px-8 py-3 rounded-sm border border-primary bg-primary/20 hover:bg-primary hover:text-dark transition-colors text-primary font-display font-bold tracking-widest uppercase shadow-[0_0_15px_rgba(0,240,255,0.4)]">> CONTACT_</a>
         </div>
     </div>
