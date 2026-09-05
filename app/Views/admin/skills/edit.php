@@ -21,6 +21,14 @@
             <input type="number" name="proficiency" value="<?= htmlspecialchars($skill['proficiency']) ?>" min="0" max="100" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-gray-50 focus:bg-white">
         </div>
         <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-2">Category</label>
+            <select name="category" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-gray-50 focus:bg-white">
+                <option value="Hard Skill" <?= (isset($skill['category']) && $skill['category'] === 'Hard Skill') ? 'selected' : '' ?>>Hard Skill</option>
+                <option value="Soft Skill" <?= (isset($skill['category']) && $skill['category'] === 'Soft Skill') ? 'selected' : '' ?>>Soft Skill</option>
+                <option value="Tool" <?= (isset($skill['category']) && $skill['category'] === 'Tool') ? 'selected' : '' ?>>Tool</option>
+            </select>
+        </div>
+        <div>
             <label class="block text-sm font-semibold text-gray-700 mb-2">Icon URL (Optional)</label>
             <input type="url" name="icon" value="<?= htmlspecialchars($skill['icon']) ?>" placeholder="https://..." class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-gray-50 focus:bg-white">
             <p class="text-xs text-gray-500 mt-1">Provide a URL for the skill icon (SVG/PNG).</p>
