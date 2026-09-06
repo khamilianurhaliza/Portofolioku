@@ -3,7 +3,7 @@
 $publicPath = realpath(__DIR__);
 $baseCandidates = [
     dirname($publicPath),
-    dirname($publicPath) . '/main',
+    dirname($publicPath) . '/porto',
     dirname($publicPath, 2),
 ];
 
