@@ -76,41 +76,41 @@
             <div class="w-24 h-1 bg-gradient-to-r from-secondary to-primary mx-auto"></div>
         </div>
         
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6" id="skills-grid">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4" id="skills-grid">
             <?php if(empty($skills)): ?>
                 <div class="col-span-full text-center text-gray-500 italic">No skills added yet.</div>
             <?php else: ?>
                 <?php $skillCount = 0; foreach($skills as $skill): $skillCount++; ?>
                 <?php 
                     $previewClasses = '';
-                    if ($skillCount > 8 && $skillCount <= 12) {
+                    if ($skillCount > 10 && $skillCount <= 15) {
                         $previewClasses = 'preview-skill opacity-40 blur-sm pointer-events-none select-none';
-                    } elseif ($skillCount > 12) {
+                    } elseif ($skillCount > 15) {
                         $previewClasses = 'hidden extra-hidden-skill';
                     }
                 ?>
-                <div class="skill-item <?= $previewClasses ?> bg-dark/80 border border-white/10 rounded-sm p-6 text-center hover:border-secondary transition-all duration-500 gsap-pop-in tilt-3d shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:shadow-[0_0_20px_rgba(255,0,60,0.3)]" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.3" data-tilt-scale="1.05">
-                    <div class="w-16 h-16 mx-auto bg-black rounded-sm flex items-center justify-center mb-4 border border-secondary/50 shadow-[0_0_10px_rgba(255,0,60,0.2)]">
+                <div class="skill-item <?= $previewClasses ?> bg-dark/80 border border-white/10 rounded-sm p-4 text-center hover:border-secondary transition-all duration-500 gsap-pop-in tilt-3d shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:shadow-[0_0_20px_rgba(255,0,60,0.3)]" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.3" data-tilt-scale="1.05">
+                    <div class="w-12 h-12 mx-auto bg-black rounded-sm flex items-center justify-center mb-3 border border-secondary/50 shadow-[0_0_10px_rgba(255,0,60,0.2)]">
                         <?php if($skill['icon']): ?>
-                            <img src="<?= htmlspecialchars($skill['icon']) ?>" alt="<?= htmlspecialchars($skill['name']) ?>" class="w-8 h-8 object-contain filter grayscale group-hover:grayscale-0">
+                            <img src="<?= htmlspecialchars($skill['icon']) ?>" alt="<?= htmlspecialchars($skill['name']) ?>" class="w-6 h-6 object-contain filter grayscale group-hover:grayscale-0">
                         <?php else: ?>
-                            <span class="text-xl font-display font-bold text-secondary"><?= substr(htmlspecialchars($skill['name']), 0, 1) ?></span>
+                            <span class="text-lg font-display font-bold text-secondary"><?= substr(htmlspecialchars($skill['name']), 0, 1) ?></span>
                         <?php endif; ?>
                     </div>
-                    <h3 class="text-lg font-display uppercase tracking-widest text-white mb-1"><?= htmlspecialchars($skill['name']) ?></h3>
-                    <div class="text-[10px] text-primary/80 font-display uppercase tracking-widest mb-3">
+                    <h3 class="text-sm md:text-base font-display uppercase tracking-widest text-white mb-1"><?= htmlspecialchars($skill['name']) ?></h3>
+                    <div class="text-[9px] md:text-[10px] text-primary/80 font-display uppercase tracking-widest mb-2">
                         [ <?= htmlspecialchars($skill['category'] ?? 'Hard Skill') ?> ]
                     </div>
                     <div class="w-full bg-gray-900 h-1 mb-1 overflow-hidden border border-white/5">
                         <div class="bg-gradient-to-r from-secondary to-primary h-1 skill-progress" data-width="<?= $skill['proficiency'] ?>%"></div>
                     </div>
-                    <span class="text-xs text-gray-400"><?= htmlspecialchars($skill['proficiency']) ?>%</span>
+                    <span class="text-[10px] md:text-xs text-gray-400"><?= htmlspecialchars($skill['proficiency']) ?>%</span>
                 </div>
                 <?php endforeach; ?>
             <?php endif; ?>
         </div>
         
-        <?php if(!empty($skills) && count($skills) > 8): ?>
+        <?php if(!empty($skills) && count($skills) > 10): ?>
         <div class="text-center mt-12">
             <button onclick="toggleSkills()" id="toggle-skills-btn" class="inline-flex flex-col items-center justify-center text-gray-400 hover:text-primary transition-colors cursor-pointer group">
                 <span class="text-xs font-display font-bold tracking-widest uppercase mb-2 group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)]">View All Skills</span>

@@ -30,8 +30,13 @@ class ProjectController extends AdminController
             $name = basename($_FILES['image']['name']);
             $ext = pathinfo($name, PATHINFO_EXTENSION);
             $newName = uniqid('proj_') . '.' . $ext;
-            $publicRoot = defined('PUBLIC_PATH') ? PUBLIC_PATH : BASE_PATH . '/public';
-            $uploadDir = $publicRoot . '/uploads/projects/';
+            $envUploadPath = \App\Helpers\Env::get('UPLOAD_PATH');
+            if (!empty($envUploadPath)) {
+                $uploadDir = rtrim($envUploadPath, '/') . '/projects/';
+            } else {
+                $publicRoot = defined('PUBLIC_PATH') ? PUBLIC_PATH : BASE_PATH . '/public';
+                $uploadDir = $publicRoot . '/uploads/projects/';
+            }
             
             if (!is_dir($uploadDir)) {
                 mkdir($uploadDir, 0777, true);

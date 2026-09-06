@@ -27,7 +27,13 @@ class CertificateController extends AdminController
             $name = basename($_FILES['image']['name']);
             $ext = pathinfo($name, PATHINFO_EXTENSION);
             $newName = uniqid('cert_') . '.' . $ext;
-            $uploadDir = BASE_PATH . '/public/uploads/certificates/';
+            $envUploadPath = \App\Helpers\Env::get('UPLOAD_PATH');
+            if (!empty($envUploadPath)) {
+                $uploadDir = rtrim($envUploadPath, '/') . '/certificates/';
+            } else {
+                $publicRoot = defined('PUBLIC_PATH') ? PUBLIC_PATH : BASE_PATH . '/public';
+                $uploadDir = $publicRoot . '/uploads/certificates/';
+            }
             
             if (!is_dir($uploadDir)) {
                 mkdir($uploadDir, 0777, true);
